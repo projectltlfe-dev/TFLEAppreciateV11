@@ -996,7 +996,7 @@ const ICON={
 let UID=0;
 const LOOKS={
   budi:{skin:'#E9B48C',hair:'spiky',hc:'#1d1c22',shirt:'uni'},
-  pak:{skin:'#F1C6A0',hair:'tidy',hc:'#24222b',shirt:'as',pants:'#232a3a'},
+  pak:{skin:'#F1C6A0',hair:'poni',hc:'#24222b',shirt:'as',pants:'#232a3a'},
   bu:{skin:'#F6CBA8',hair:'jule',hc:'#4a2c22',shirt:'as',pants:'#232a3a'},
   rIbu:{skin:'#F5D0AE',hair:'bob',hc:'#3b2a22',shirt:'#F08CA0',sleeve:'long'},
   rPak:{skin:'#D9A27A',hair:'short',hc:'#6f6f78',shirt:'#7FC8A9',mus:1,pants:'#4a5568'},
@@ -1049,6 +1049,7 @@ function charSVG(L,ex='smile',vb='0 0 200 300'){
     case'long':back=`<path d="M38 98Q32 26 100 24Q168 26 162 98L168 206Q134 218 100 214Q66 218 32 206Z" fill="${hc}"/>`;front=`<path d="M37 104Q33 30 100 27Q167 30 163 104Q156 66 106 50L100 42L94 50Q44 66 37 104Z" fill="${hc}"/>`;break;
     case'jule':back=`<path d="M33 104Q27 24 100 22Q173 24 167 104L166 128Q160 142 146 134L142 118L58 118L54 134Q40 142 34 128Z" fill="${hc}"/>`;front=`<path d="M37 106Q30 26 106 25Q170 28 164 100Q160 70 138 56Q116 72 84 70Q60 72 50 86Q42 96 37 106Z" fill="${hc}"/><path d="M138 56Q150 70 158 94" stroke="${shade(hc,.18)}" stroke-width="3" fill="none" stroke-linecap="round"/>`;break;
     case'spiky':front=`<path d="M38 96Q34 40 66 32L70 16L86 27L97 10L110 26L127 14L131 32Q166 42 162 96Q156 62 132 58Q104 68 72 56Q48 66 38 96Z" fill="${hc}"/>`;break;
+    case'poni':front=`<path d="M38 104C28 70 34 44 58 31C80 16 126 16 146 30C168 44 172 72 162 104L156 86L150 76L134 80L116 72L110 79L68 64Q52 72 46 82Z" fill="${hc}"/>`;break;
     case'neat':front=`<path d="M35 106C22 72 26 40 52 25C74 9 128 8 150 25C176 40 178 72 165 106C161 92 156 80 148 71C134 61 116 59 100 58C84 58 66 61 54 71C46 80 40 92 35 106Z" fill="${hc}"/><path d="M50 42C70 22 130 20 152 40" stroke="${shade(hc,.22)}" stroke-width="5" fill="none" stroke-linecap="round" opacity=".4"/><path d="M104 22Q116 42 100 58" stroke="${shade(hc,.3)}" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M66 30Q60 44 56 60M138 30Q146 44 148 60" stroke="${shade(hc,.18)}" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/>`;break;
     case'tidy':front=`<path d="M38 100C32 74 36 48 58 34C80 20 124 20 146 34C166 48 170 74 162 100C158 86 152 76 142 69C130 64 116 62 104 62C96 62 88 62 80 61C68 63 58 70 52 78C47 85 43 92 38 100Z" fill="${hc}"/><path d="M80 61C82 44 94 30 112 24" stroke="${shade(hc,.3)}" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".6"/><path d="M98 32C114 27 134 29 146 40" stroke="${shade(hc,.18)}" stroke-width="4" fill="none" stroke-linecap="round" opacity=".3"/>`;break;
     case'short':front=`<path d="M40 88Q38 30 100 30Q162 30 160 88Q150 56 126 54Q116 64 96 60Q62 56 40 88Z" fill="${hc}"/>`;break;
@@ -1067,7 +1068,7 @@ function charSVG(L,ex='smile',vb='0 0 200 300'){
   if(uni){
     det+=`<path d="M84 146L100 165L116 146Z" fill="${shD}"/><path d="M84 145L100 163L88 169L76 152Z" fill="${shade(sh,.16)}"/><path d="M116 145L100 163L112 169L124 152Z" fill="${shade(sh,.16)}"/>`
       +`<path d="M100 165L100 242" stroke="${shD}" stroke-width="2.2"/><circle cx="100" cy="186" r="2" fill="#DCE6FA"/><circle cx="100" cy="206" r="2" fill="#DCE6FA"/><circle cx="100" cy="226" r="2" fill="#DCE6FA"/>`
-      +pinSVG(72.8,174,.9)+chestLogo(103,174,28.5);
+      +chestLogo(69,178,28)+pinSVG(110.8,174,.9);
   }else if(as){
     const dk='#16306A',lt='#2D4F9E';
     det+=`<path d="M100 160L100 242" stroke="${dk}" stroke-width="2.5"/>`
@@ -1092,10 +1093,6 @@ function charSVG(L,ex='smile',vb='0 0 200 300'){
     const epa=as?`<rect x="${x-9}" y="150" width="18" height="6" rx="2" fill="#16306A"/>`:'';
     const sleeve=sleeveShort?`<rect x="${x-8}" y="170" width="16" height="42" rx="8" fill="${sk}" stroke="${skl}" stroke-width="1.6"/><rect x="${x-10}" y="148" width="20" height="34" rx="10" fill="${sh}"/>${epa}`:`<rect x="${x-10}" y="148" width="20" height="62" rx="10" fill="${sh}"/>`;
     let trim='';
-    if((uni||as)&&sleeveShort){
-      const tc=uni?['#E5322D','#14378A','#FFC928']:['#E5322D','#3D7BEA','#FFC928'];
-      trim=`<clipPath id="${id}s${side}"><rect x="${x-10}" y="148" width="20" height="34" rx="10"/></clipPath><g clip-path="url(#${id}s${side})">${tc.map((c,i)=>`<rect x="${x-11}" y="${(167.5+i*4.4).toFixed(1)}" width="22" height="4.4" fill="${c}"/>`).join('')}</g>`;
-    }
     return`<g class="arm arm${side}" style="transform-origin:${x}px 158px">${sleeve}${trim}${props}<circle cx="${x}" cy="214" r="10" fill="${sk}" stroke="${skl}" stroke-width="1.6"/></g>`;
   };
   const mus=L.mus?`<path d="M86 113Q100 106 114 113Q100 118 86 113Z" fill="#3a3a3f"/>`:'';
